@@ -45,7 +45,7 @@ const render = function (dataList) {
       });
   }
   
-  // Function to POST a new kudo to the server
+  // Function to POST a new kudo to the server      Messages Div sends alert if fields not filled in
   const postKudo = function (event) {
   
     // Prevent default form action, and empty messages div
