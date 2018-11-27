@@ -3,22 +3,26 @@ const Schema = mongoose.Schema;
 
 
 const usersSchema = new Schema({
-  username: {
+  sender: {
     type: String,
     trim: true,
-    required: "Username is Required"
+    enum: ["Alex", "Bob", "Harold", "Kumar"]
   },
-  password: {
+  receiver: {
     type: String,
     trim: true,
-    required: "Password is Required"
+    enum: {
+      values: ["Alex", "Bob", "Harold", "Kumar"],
+      message: "Sorry, wrong category"
+    }
   },
-  notes: [
+  kudos: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Note"
+      ref: "kudos"
     }
   ]
+
 });
 
 const users = mongoose.model("users", usersSchema);

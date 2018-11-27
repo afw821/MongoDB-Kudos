@@ -22,7 +22,7 @@ const render = function (dataList) {
   
   // Function to retrieve all kudos, then render them to the page
   const getKudos = function () {
-    $.get(`/api/kudo/`)
+    $.get(`/api/kudos/`)
       .then(function (data) {
         render(data)
       });
@@ -30,7 +30,7 @@ const render = function (dataList) {
   
   // Function to retrieve all users and add them to the To and From dropdowns
   const getUsers = function () {
-    $.get(`/api/user/`)
+    $.get(`/api/users/`)
       .then(function (data) {
   
         // Loop through the data and add the name to both the sender and receiver dropdown
@@ -64,7 +64,7 @@ const render = function (dataList) {
       }
   
       // Make the POST request
-      $.post('/api/kudo', kudo)
+      $.post('/api/kudos', kudo)
         .then(function (data) {
   
           // If our submission was successful, blank the input fields and hide the modal
