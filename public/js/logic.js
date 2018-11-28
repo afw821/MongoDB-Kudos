@@ -13,7 +13,7 @@ const render = function (dataList) {
             <h6>From: ${dataList[i].from[0].name}</h6> 
           <div class='card-body'>
             <h6>To: ${dataList[i].to[0].name}</h6>
-            <p>${dataList[i].body}</p>
+            <p>${dataList[i].message}</p>
           </div>
         </div>`
         );
@@ -23,6 +23,7 @@ const render = function (dataList) {
   // Function to retrieve all kudos, then render them to the page
   const getKudos = function () {
     $.get(`/api/kudos/`)
+    console.log(data)
       .then(function (data) {
         render(data)
       });
@@ -58,7 +59,7 @@ const render = function (dataList) {
       // Gather input data into an object to be POSTed to the server
       const kudo = {
         title: $('#kudo-title').val().trim(),
-        body: $('#kudo-body').val().trim(),
+        message: $('#kudo-body').val().trim(),
         from: $('#kudo-from').val(),
         to: $('#kudo-to').val()
       }
@@ -67,7 +68,7 @@ const render = function (dataList) {
       $.post('/api/kudos', kudo)
         .then(function (data) {
   
-          // If our submission was successful, blank the input fields and hide the modal
+      
           $('#kudo-title').val('');
           $('#kudo-body').val('');
           $('#kudo-from').val('');
@@ -79,12 +80,12 @@ const render = function (dataList) {
           getKudos();
         }).fail(function (err) {
   
-          // If there was an error in the submission, alert the user
+        
           $('#messages').append(`<div class='alert alert-danger'>There was an error with your submission. Please try again.</div>`)
         })
       } else {
   
-        // If the user did not select both a sender and a receiver, alert them
+        
         $('#messages').append(`<div class='alert alert-danger'>Please select both a sender and receiver</div>`)
       }
   }
@@ -93,6 +94,5 @@ const render = function (dataList) {
   getKudos();
   getUsers();
   
-  // Click listener
   $(document).on('click', '#send-kudo', postKudo);
   

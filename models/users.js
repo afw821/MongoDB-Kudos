@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 
 const usersSchema = new Schema({
-  sender: {
+  from: {
     type: String,
     trim: true,
     enum: ["Alex", "Bob", "Harold", "Kumar"]
   },
-  receiver: {
+  to: {
     type: String,
     trim: true,
     enum: {
