@@ -2,7 +2,7 @@ const kudos = require("../models/kudos.js");
 const users = require("../models/users.js");
 
 module.exports = function (app) {
-    app.get('api/users', function (req, res) {           // * A GET route that retrieves all Users from the database.
+    app.get('/api/users', function (req, res) {           // * A GET route that retrieves all Users from the database.
         users.find({})
             .populate('kudos')
             .then(function (dbusers) {
@@ -34,6 +34,7 @@ module.exports = function (app) {
     //         });
     // });
     app.post('/api/kudos', function (req, res) {
+        console.log(req.body)
         const userId = req.body.userId;
         const newEntry = {
           title: req.body.title,
