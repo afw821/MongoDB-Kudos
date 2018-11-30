@@ -16,8 +16,13 @@ app.use(express.json());
 app.use(express.static('public')); // serves our public files
 
 //
-mongoose.connect('mongodb://localhost/kudositeDB', { useNewUrlParser: true}); //name of database kudositeDB
+if(process.env.MONGODB_URI){
+    mongoose.connect(process.env.MONGODB_URI);
+}else{
 
+
+mongoose.connect('mongodb://localhost/kudositeDB', { useNewUrlParser: true}); //name of database kudositeDB
+}
 //require api-routes 
 require('./routes/api-routes')(app);
 
