@@ -26,7 +26,7 @@ const getKudos = function () {
   $.get(`/api/kudos/`)
 
     .then(function (data) {
-      console.log(data)
+      
       render(data)
     });
 }
@@ -41,10 +41,10 @@ const getUsers = function () {
       for (let i = 0; i < data.length; i++) {
         console.log("user data", data)
         $('#kudo-from')
-          .append(`<option value='${data[i]._id}'>${data[i].name}</option>`)
+          .append(`<option>${data[i].name}</option>`)
 
         $('#kudo-to')
-          .append(`<option value='${data[i]._id}'>${data[i].name}</option>`)
+          .append(`<option>${data[i].name}</option>`)
       }
     });
 }

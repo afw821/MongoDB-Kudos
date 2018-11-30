@@ -15,50 +15,54 @@ module.exports = function (app) {
     app.get('/api/kudos', function (req, res) {
         kudos.find({})
             .populate('users')
-            .then(function (dbkudos) {                         // * A GET route that retrieves all Kudos from the database.
+            .then(function (data) {                         // * A GET route that retrieves all Kudos from the database.
 
-                console.log('data', dbkudos)
-                res.json(dbkudos);
+              
+                res.json(data);
+            })
+            .catch(function (err) {
+                res.json(err);
+            });
+    });
+    app.post('/api/kudos', function (req, res) {
+   
+        kudos.create(req.body)                              // * A POST route to handle creating new Kudos.
+            .then(function (data) {
+                res.json(data);
             })
             .catch(function (err) {
                 res.json(err);
             });
     });
     // app.post('/api/kudos', function (req, res) {
-    //     kudos.create(req.body)                              // * A POST route to handle creating new Kudos.
-    //         .then(function (dbkudos) {
-    //             res.json(dbkudos);
-    //         })
-    //         .catch(function (err) {
-    //             res.json(err);
-    //         });
-    // });
-    app.post('/api/kudos', function (req, res) {
-        console.log(req.body)
-        const userId = req.body.userId;
-        const newEntry = {
-          title: req.body.title,
-          body: req.body.message
+    //     console.log(req.body)
+    //     const userId = req.body.userId;
+    //     const newEntry = {
+    //       title: req.body.title,
+    //       from: req.body.from,
+    //       to: req.body.to,
+         
+    //       body: req.body.message
        
-        }
+    //     }
     
-        kudos.create(newEntry)
-          .then(function (kudoData) {
+    //     kudos.create(newEntry)
+    //       .then(function (kudoData) {
             
-          // If kudo post was created successfully, find the user and push the new kudo id _id to the User's `kudos` array
-          // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
-          // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-          return users.findOneAndUpdate({_id: userId}, { $push: { kudos: kudoData._id } }, { new: true });
-        })
-        .then(function(kudoData) {
+    //       // If kudo post was created successfully, find the user and push the new kudo id _id to the User's `kudos` array
+    //       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
+    //       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
+    //       return users.findOneAndUpdate({_id: userId}, { $push: { kudos: kudoData._id } }, { new: true });
+    //     })
+    //     .then(function(kudoData) {
       
-          res.json(kudoData);
-        })
-        .catch(function (err) {
-          res.json(err);
-        });
+    //       res.json(kudoData);
+    //     })
+    //     .catch(function (err) {
+    //       res.json(err);
+    //     });
         
-      });
+    //   });
 
 
 }
