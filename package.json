@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/afw821/MongoDB-Kudos/issues"
   },
-  "homepage": "https://github.com/afw821/MongoDB-Kudos#readme",
+  "homepage": "https://github.com/afw821/MongoDB-Kudos",
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.3.13"
