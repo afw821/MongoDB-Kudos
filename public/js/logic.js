@@ -11,9 +11,9 @@ const render = function (dataList) {
       .append(
         `<div class='card'>
             <h5>${dataList[i].title}</h5>
-            <h6>From: ${dataList[i].from}</h6> 
+            <h6>From: ${dataList[i].from.name}</h6> 
           <div class='card-body'>
-            <h6>To: ${dataList[i].to}</h6>
+            <h6>To: ${dataList[i].to.name}</h6>
             <p>${dataList[i].message}</p>
           </div>
         </div>`
@@ -39,12 +39,11 @@ const getUsers = function () {
       // Loop through the data and add the name to both the sender and receiver dropdown
       // The database _id is used as the value for each option added
       for (let i = 0; i < data.length; i++) {
-        console.log("user data", data)
         $('#kudo-from')
-          .append(`<option>${data[i].name}</option>`)
+          .append(`<option value=${data[i]._id}>${data[i].name}</option>`)
 
         $('#kudo-to')
-          .append(`<option>${data[i].name}</option>`)
+          .append(`<option value=${data[i]._id}>${data[i].name}</option>`)
       }
     });
 }
